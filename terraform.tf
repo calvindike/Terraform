@@ -101,10 +101,10 @@ resource "aws_instance" "web" {
   ami           = "ami-0c322300a1dd5dc79"
   instance_type = "t2.micro"
   subnet_id      = "${aws_subnet.pubb.id}"
-  key_name   = "texas"
+  key_name   = "classkey"
   user_data = <<-EOF
 	  #! /bin/bash
-    sudo yum update -y
+          sudo yum update -y
 	  sudo yum install httpd -y
 	  sudo systemctl start httpd
     EOF
