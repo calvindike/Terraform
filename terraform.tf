@@ -96,20 +96,3 @@ resource "aws_route_table_association" "ndukaroute1" {
   subnet_id      = "${aws_subnet.pub22.id}"
   route_table_id = "${aws_route_table.ndukaroute.id}"
 }
-#create Ec2-instance
-resource "aws_instance" "web" {
-  ami           = "ami-0c322300a1dd5dc79"
-  instance_type = "t2.micro"
-  subnet_id      = "${aws_subnet.pubb.id}"
-  key_name   = "classkey"
-  user_data = <<-EOF
-	  #! /bin/bash
-          sudo yum update -y
-	  sudo yum install httpd -y
-	  sudo systemctl start httpd
-    EOF
-
-  tags = {
-    Name = "Nduka-Terraform instance"
-  }
-}
