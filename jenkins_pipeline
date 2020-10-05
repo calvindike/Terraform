@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	tools {
-        terraform 'Terraform-11'
+        terraform 'Terraform2'
     }
 	parameters {
         choice(name: 'Terraform_State', choices: ['apply','destroy', 'init'], description: 'Terraform states',)
