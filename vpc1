@@ -1,0 +1,31 @@
+pipeline {
+      agent any
+      tools {
+            terraform 'terraform1'
+      }
+            parameters {
+            choice(name: 'Terraform_State', choices: ['apply','destroy', 'init'], description: 'Terraform states',)
+    }
+            stages {
+                 stage ( "Git clone terrafom") {
+                  steps{
+                  checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nduka145/Terraform.git']]]
+		}
+	}
+                 stage ( "Terraform init") {
+                  steps{
+                  sh 'terraform init'
+		}
+	}
+                 stage ( "Terraform Plan") {
+                  steps{
+                  sh 'terraform plan'
+		}
+	}
+                 stage ( "Terraform Apply") {
+                  steps{
+                  sh 'terraform "${Terraform_State}" --auto-approve'
+		}
+	}
+       }
+}
