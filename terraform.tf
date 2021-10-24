@@ -19,7 +19,7 @@ resource "aws_vpc" "ndukaterraform" {
   }
 }
 resource "aws_subnet" "pubb" {
-  vpc_id     = "${aws_vpc.ndukaterraform.id}"
+  vpc_id     = aws_vpc.ndukaterraform.id
   cidr_block = "10.0.1.0/24"
   map_public_ip_on_launch = true
 
@@ -28,7 +28,7 @@ resource "aws_subnet" "pubb" {
   }
 }
 resource "aws_subnet" "pub22" {
-  vpc_id     = "${aws_vpc.ndukaterraform.id}"
+  vpc_id     = aws_vpc.ndukaterraform.id
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = true
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "pub22" {
   }
 }
 resource "aws_internet_gateway" "ndukatgGW" {
-  vpc_id = "${aws_vpc.ndukaterraform.id}"
+  vpc_id = aws_vpc.ndukaterraform.id
 
   tags = {
     Name = "ndukatgGW"
