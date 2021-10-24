@@ -44,7 +44,7 @@ resource "aws_internet_gateway" "ndukatgGW" {
   }
 }
 resource "aws_route_table" "ndukaroute" {
-  vpc_id = "${aws_vpc.ndukaterraform.id}"
+  vpc_id = aws_vpc.ndukaterraform.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -56,14 +56,14 @@ resource "aws_route_table" "ndukaroute" {
   }
 }
 resource "aws_route_table_association" "ndukaroute" {
-  subnet_id      = "${aws_subnet.pubb.id}"
-  route_table_id = "${aws_route_table.ndukaroute.id}"
+  subnet_id      = aws_subnet.pubb.id
+  route_table_id = aws_route_table.ndukaroute.id
 }
 
 resource "aws_security_group" "terra-SG" {
   name        = "terra-SG"
   description = "Allow TLS inbound traffic"
-  vpc_id      = "${aws_vpc.ndukaterraform.id}"
+  vpc_id      = aws_vpc.ndukaterraform.id
 
   ingress {
     from_port   = 22
@@ -101,6 +101,6 @@ resource "aws_security_group" "terra-SG" {
 }
 
 resource "aws_route_table_association" "ndukaroute1" {
-  subnet_id      = "${aws_subnet.pub22.id}"
-  route_table_id = "${aws_route_table.ndukaroute.id}"
+  subnet_id      = aws_subnet.pub22.id
+  route_table_id = aws_route_table.ndukaroute.id
 }
