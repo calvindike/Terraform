@@ -15,7 +15,7 @@ resource "aws_vpc" "ndukaterraform" {
   cidr_block = "10.0.0.0/16"
   
     tags = {
-    Name = "ndukaterraform"
+    Name = "ndukaterraform1"
   }
 }
 resource "aws_subnet" "pubb" {
