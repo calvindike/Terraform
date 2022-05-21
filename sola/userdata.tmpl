@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo yum update -y
+sudo yum install httpd -y
+systemctl start httpd
+systemctl enable httpd
+echo "Always in my mind to write on; the falling standard of education in Nigeria" | sudo tee /var/www/html/index.html
